@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="stylesheet" href="style.css"charset="utf-8" />
+    </head>
+<body>
+    Write-up <input type="tale" id="tale" value="enter your tale">
+
+<button onclick="myFunction()">Try it</button>
+    
+    
+<div id="wrapper">
+    
+    
+<!--*************************Image Canvas*****************************-->
+    
+    <canvas id="canvasimg" width="1080" height="1080"></canvas>
+        <script>
+            var canvas = document.getElementById('canvasimg');
+            var context = canvas.getContext('2d');
+            var imageObj = new Image();
+
+            imageObj.onload = function(){
+            context.drawImage(imageObj, 0, 0);
+            };
+            
+            imageObj.src = './background.png';
+        </script>
+
+<!--*************************Text Canvas****************************-->
+    
+    <canvas id="canvastxt" width="840" height="840" style="border:1px solid #d3d3d3; padding: 120px;">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+        <script>
+            
+            function myFunction() {
+                var tale = document.getElementById("tale").value;
+                var c = document.getElementById("canvastxt");
+                var ctx = c.getContext("2d");
+                ctx.fillText(tale,420,420);
+
+}
+</script>
+    
+
+</div>
+    
+
+</body>
+</html>

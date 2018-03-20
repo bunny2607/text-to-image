@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+     <link rel="stylesheet" href="style.css"charset="utf-8" />
+    </head>
+<body>
+    Write-up <input type="tale" id="tale" value="enter your tale">
+
+<button onclick="myFunction()">Try it</button>
+    
+    
+<div id="wrapper">
+    
+    
+<!--*************************Image Canvas*****************************-->
+    
+    <canvas id="canvasimg" width="1080" height="1080"></canvas>
+        <script>
+            var canvas = document.getElementById('canvasimg');
+            var context = canvas.getContext('2d');
+            var imageObj = new Image();
+
+            imageObj.onload = function(){
+            context.drawImage(imageObj, 0, 0);
+            };
+            
+            imageObj.src = './background.png';
+        </script>
+
+<!--*************************Text Canvas****************************-->
+    
+    <canvas id="canvastxt" width="840" height="840" style="border:1px solid #d3d3d3; padding: 120px;">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+        <script>
+             
+            function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+                var words = text.split(' ');
+                var line = '';
+
+                for(var n = 0; n < words.length; n++) {
+                    var testLine = line + words[n] + ' ';
+                    var metrics = ctx.measureText(testLine);
+                    var testWidth = metrics.width;
+                    if (testWidth > maxWidth && n > 0) {
+                        ctx.fillText(line, x, y);
+                            line = words[n] + ' ';
+                            y += lineHeight;
+                    }
+                    else {
+                        line = testLine;
+                    }
+                }
+                ctx.fillText(line, x, y);
+            
+            }
+            
+            
+            
+        
+            
+                var canvas = document.getElementById('canvastxt');
+                
+                var maxWidth = 750;
+                var lineHeight = 40;
+                var x = (canvas.width - maxWidth) / 2;
+                var y = 420 ;
+                var text = ' Lorem ipsum dolor sit amet, suscipit lorem, amet et, lacinia vero, magnis vestibulum rhoncus imperdiet. Pellentesque et mauris ante, ultrices lobortis, tincidunt mi in elit nec, quisque congue elementum arcu, pellentesque vestibulum etiam ac gravida suspendisse. Integer risus, vitae sagittis dignissim, sed cubilia, nunc eget augue. Non in arcu mi pellentesque, volutpat in vestibulum ultricies nisl nunc. Orci lorem enim a duis accumsan quam, vel tristique ac nullam nam lacus quis, integer ac dolor laoreet odio mi, curabitur pretium diam pellentesque lacinia vel aliquam, sollicitudin vestibulum lorem rhoncus tempor. Mauris in, integer ridiculus recusandae ipsum praesent ac iaculis, massa suscipit nec proin. Amet eu nunc sem, eleifend adipiscing, in porta, odio senectus phasellus semper ipsum. ';
+                
+                var ctx = canvas.getContext("2d");
+                ctx.textBaseline = 'middle';
+                wrapText(ctx, text, x, y, maxWidth, lineHeight);
+            
+
+</script>
+    
+
+</div>
+    
+
+</body>
+</html>
